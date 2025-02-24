@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, TextField, Select, MenuItem, FormControl, InputLabel, Button } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
+import { useTranslation } from 'react-i18next';
 
 interface CaseData {
   caseNumber: string;
@@ -9,6 +10,7 @@ interface CaseData {
 }
 
 const CaseForm: React.FC = () => {
+  const { t } = useTranslation();
   const [caseData, setCaseData] = useState<CaseData>({
     caseNumber: '',
     caseType: '',
@@ -58,7 +60,7 @@ const CaseForm: React.FC = () => {
       sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 300 }}
     >
       <TextField
-        label="Ärendenummer"
+        label={t('caseNumber')}
         name="caseNumber"
         value={caseData.caseNumber}
         onChange={handleTextFieldChange}
@@ -66,16 +68,16 @@ const CaseForm: React.FC = () => {
       />
 
       <FormControl variant="outlined">
-        <InputLabel id="caseType-label">Ärendetyp</InputLabel>
+        <InputLabel id="caseType-label">{t('caseType')}</InputLabel>
         <Select
           labelId="caseType-label"
-          label="Case Type"
+          label={t('caseType')}
           name="caseType"
           value={caseData.caseType}
           onChange={handleSelectChange}
         >
           <MenuItem value="">
-            <em>Select type</em>
+            <em>{t('selectType')}</em>
           </MenuItem>
           <MenuItem value="type1">Type 1</MenuItem>
           <MenuItem value="type2">Type 2</MenuItem>
@@ -84,16 +86,16 @@ const CaseForm: React.FC = () => {
       </FormControl>
 
       <FormControl variant="outlined">
-        <InputLabel id="priority-label">Prioritet</InputLabel>
+        <InputLabel id="priority-label">{t('priority')}</InputLabel>
         <Select
           labelId="priority-label"
-          label="Priority"
+          label={t('priority')}
           name="priority"
           value={caseData.priority}
           onChange={handleSelectChange}
         >
           <MenuItem value="">
-            <em>Select priority</em>
+            <em>{t('selectPriority')}</em>
           </MenuItem>
           <MenuItem value="low">Low</MenuItem>
           <MenuItem value="medium">Medium</MenuItem>
