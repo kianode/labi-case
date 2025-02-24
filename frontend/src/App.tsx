@@ -1,4 +1,3 @@
-import React from 'react';
 import CaseForm from './CaseForm';
 import LanguageSwitcher from './LanguageSwitcher';
 
