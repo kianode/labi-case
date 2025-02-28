@@ -10,8 +10,10 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
+const database_config_1 = require("./config/database.config");
+const case_type_entity_1 = require("./entities/case-type.entity");
+const seeds_module_1 = require("./seeds/seeds.module");
+const case_type_seed_1 = require("./seeds/case-type.seed");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -22,19 +24,11 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
                 envFilePath: '.env',
             }),
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'postgres',
-                host: process.env.DATABASE_HOST,
-                port: parseInt(process.env.DATABASE_PORT || '5432', 10),
-                username: process.env.DATABASE_USER,
-                password: process.env.DATABASE_PASSWORD,
-                database: process.env.DATABASE_NAME,
-                entities: [__dirname + '/**/*.entity{.ts,.js}'],
-                synchronize: true,
-            }),
+            typeorm_1.TypeOrmModule.forRoot(database_config_1.default),
+            typeorm_1.TypeOrmModule.forFeature([case_type_entity_1.CaseType]),
+            seeds_module_1.SeedsModule,
         ],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [case_type_seed_1.CaseTypeSeeder],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

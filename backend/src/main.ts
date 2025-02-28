@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { CaseTypeSeeder } from './seeds/case-type.seed';
 import {
   FastifyAdapter,
   NestFastifyApplication,
@@ -11,6 +12,10 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+
+  // Kör seed-fil för testdata
+  const seeder = app.get(CaseTypeSeeder);
+  await seeder.seed();
 
   // Starta servern (justera port och host efter behov)
   await app.listen(3000, '0.0.0.0');

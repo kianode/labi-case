@@ -1,4 +1,4 @@
-import CaseForm from './CaseForm';
+import CaseForm from './components/CaseForm';
 import LanguageSwitcher from './LanguageSwitcher';
 
 function App() {

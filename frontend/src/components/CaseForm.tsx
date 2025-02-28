@@ -104,7 +104,7 @@ const CaseForm: React.FC = () => {
       </FormControl>
 
       <Button type="submit" variant="contained" color="primary">
-        Save
+        {t('save')}
       </Button>
     </Box>
   );
